@@ -1,0 +1,138 @@
+================================================================================
+  MAPA DE MIGRACION: SalesApp (Android) --> Kotlin Multiplatform
+================================================================================
+
+REGLA PRINCIPAL
+---------------
+  commonMain  = Codigo puro Kotlin, sin APIs de Android
+  androidMain = Codigo que usa Room, Hilt, Firebase, Compose, ViewModel, etc.
+
+================================================================================
+  COMMONMAIN/kotlin/com/example/kotlinmultiplatform/
+================================================================================
+
+  domain/model/
+    - Customer.kt
+    - Product.kt
+    --> Data classes puras, sin dependencias Android
+
+  domain/repository/
+    - CustomerRepository.kt
+    - ProductRepository.kt
+    --> Son interfaces, sin dependencias Android
+
+  domain/usecase/customer/
+    - CreateCustomerUseCase.kt
+    - DeleteCustomerUseCase.kt
+    - GetCustomerByIdUseCase.kt
+    - ListCustomerUseCase.kt
+    - UpdateCustomerUseCase.kt
+    --> Logica pura que solo llama al repositorio
+
+  domain/usecase/product/
+    - CreateProductUseCase.kt
+    - DeleteProductUseCase.kt
+    - GetProductByCodeUseCase.kt
+    - ListProductUseCase.kt
+    - UpdateProductUseCase.kt
+    --> Logica pura que solo llama al repositorio
+
+  domain/validation/
+    - CustomerValidator.kt
+    - ProductValidator.kt
+    --> Logica pura sin dependencias Android
+
+  data/remote/dto/
+    - CustomerDTO.kt
+    - ProductDTO.kt
+    --> Data classes puras
+
+  data/remote/mapper/
+    - CustomerRemoteMapper.kt
+    - ProductRemoteMapper.kt
+    --> Mappers sin dependencias Android
+
+  data/mapper/
+    - CustomerMapper.kt
+    - ProductMapper.kt
+    --> Mappers sin dependencias Android
+
+================================================================================
+  ANDROIDMAIN/kotlin/com/example/kotlinmultiplatform/
+================================================================================
+
+  data/local/
+    - SalesDatabase.kt            --> Room es Android-only
+    - dao/CustomerDao.kt
+    - dao/ProductDao.kt
+    - entity/CustomerEntity.kt
+    - entity/ProductEntity.kt
+    - repository/BaseInMemoryRepository.kt
+    - repository/BaseRepository.kt
+    - repository/InMemoryProductRepository.kt
+    - repository/RoomCustomerRepository.kt
+    - repository/RoomProductRepository.kt
+
+  data/remote/
+    - CustomerFirebaseDataSource.kt     --> Firebase Android SDK es Android-only
+    - FirestoreCustomerRepository.kt
+    - FirestoreProductRepository.kt
+    - ProductFirebaseDataSource.kt
+    - api/CustomerApiService.kt         --> Retrofit es Android-only
+    - api/ProductApiService.kt
+    - datasource/CustomerRemoteDataSource.kt
+    - datasource/ProductRemoteDataSource.kt
+
+  data/repository/
+    - CustomerRepositoryImpl.kt         --> Usa Room + Firebase
+    - ProductRepositoryImpl.kt
+
+  di/
+    - DatabaseModule.kt                 --> Hilt es Android-only
+    - FirebaseModule.kt
+    - NetworkModule.kt
+    - RepositoryModule.kt
+
+  presentation/
+    - AppNavigation.kt                  --> Jetpack Compose/ViewModel son Android-only
+    - MainActivity.kt
+    - SalesApplication.kt
+    - customer/ValidationResult.kt
+    - customer/create/ (5 archivos)
+    - customer/list/  (5 archivos)
+    - customer/update/(5 archivos)
+    - product/ValidationResult.kt
+    - product/create/ (5 archivos)
+    - product/list/   (5 archivos)
+    - product/update/ (5 archivos)
+    - ui/theme/Color.kt
+    - ui/theme/Theme.kt
+    - ui/theme/Type.kt
+
+================================================================================
+  RESUMEN VISUAL
+================================================================================
+
+  commonMain/
+    └── kotlin/.../
+          ├── domain/
+          │   ├── model/          <-- Customer.kt, Product.kt
+          │   ├── repository/     <-- interfaces
+          │   ├── usecase/        <-- toda la logica de negocio
+          │   └── validation/
+          └── data/
+              ├── mapper/
+              └── remote/
+                  ├── dto/
+                  └── mapper/
+
+  androidMain/
+    └── kotlin/.../
+          ├── data/
+          │   ├── local/          <-- Room (DB, DAOs, entities, repos)
+          │   ├── remote/         <-- Firebase, Retrofit, datasources
+          │   └── repository/     <-- implementaciones concretas
+          ├── di/                 <-- modulos Hilt
+          └── presentation/       <-- todo lo de UI (screens, ViewModels, etc.)
+
+================================================================================

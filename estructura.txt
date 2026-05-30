@@ -1,0 +1,208 @@
+src
+├── androidMain
+│   ├── AndroidManifest.xml
+│   ├── kotlin
+│   │   └── com
+│   │       └── example
+│   │           └── kotlinmultiplatform
+│   │               ├── MainActivity.kt              (KMP template)
+│   │               ├── Platform.android.kt
+│   │               ├── data
+│   │               │   ├── local
+│   │               │   │   ├── SalesDatabase.kt
+│   │               │   │   ├── dao
+│   │               │   │   │   ├── CustomerDao.kt
+│   │               │   │   │   └── ProductDao.kt
+│   │               │   │   ├── entity
+│   │               │   │   │   ├── CustomerEntity.kt
+│   │               │   │   │   └── ProductEntity.kt
+│   │               │   │   └── repository
+│   │               │   │       ├── BaseInMemoryRepository.kt
+│   │               │   │       ├── BaseRepository.kt
+│   │               │   │       ├── InMemoryProductRepository.kt
+│   │               │   │       ├── RoomCustomerRepository.kt
+│   │               │   │       └── RoomProductRepository.kt
+│   │               │   ├── remote
+│   │               │   │   ├── CustomerFirebaseDataSource.kt
+│   │               │   │   ├── FirestoreCustomerRepository.kt
+│   │               │   │   ├── FirestoreProductRepository.kt
+│   │               │   │   ├── ProductFirebaseDataSource.kt
+│   │               │   │   ├── api
+│   │               │   │   │   ├── CustomerApiService.kt
+│   │               │   │   │   └── ProductApiService.kt
+│   │               │   │   └── datasource
+│   │               │   │       ├── CustomerRemoteDataSource.kt
+│   │               │   │       └── ProductRemoteDataSource.kt
+│   │               │   └── repository
+│   │               │       ├── CustomerRepositoryImpl.kt
+│   │               │       └── ProductRepositoryImpl.kt
+│   │               ├── di
+│   │               │   ├── DatabaseModule.kt
+│   │               │   ├── FirebaseModule.kt
+│   │               │   ├── NetworkModule.kt
+│   │               │   └── RepositoryModule.kt
+│   │               └── presentation
+│   │                   ├── AppNavigation.kt
+│   │                   ├── MainActivity.kt
+│   │                   ├── SalesApplication.kt
+│   │                   ├── customer
+│   │                   │   ├── ValidationResult.kt
+│   │                   │   ├── create
+│   │                   │   │   ├── CreateCustomerScreen.kt
+│   │                   │   │   ├── CreateCustomerUiEffect.kt
+│   │                   │   │   ├── CreateCustomerUiEvent.kt
+│   │                   │   │   ├── CreateCustomerUiState.kt
+│   │                   │   │   └── CreateCustomerViewModel.kt
+│   │                   │   ├── list
+│   │                   │   │   ├── CustomerItem.kt
+│   │                   │   │   ├── EmptyCustomerView.kt
+│   │                   │   │   ├── ListCustomer.kt
+│   │                   │   │   ├── ListCustomerScreen.kt
+│   │                   │   │   └── ListCustomerViewModel.kt
+│   │                   │   └── update
+│   │                   │       ├── UpdateCustomerScreen.kt
+│   │                   │       ├── UpdateCustomerUiEffect.kt
+│   │                   │       ├── UpdateCustomerUiEvent.kt
+│   │                   │       ├── UpdateCustomerUiState.kt
+│   │                   │       └── UpdateCustomerViewModel.kt
+│   │                   ├── product
+│   │                   │   ├── ValidationResult.kt
+│   │                   │   ├── create
+│   │                   │   │   ├── CreateProductScreen.kt
+│   │                   │   │   ├── CreateProductUiEffect.kt
+│   │                   │   │   ├── CreateProductUiEvent.kt
+│   │                   │   │   ├── CreateProductUiState.kt
+│   │                   │   │   └── CreateProductViewModel.kt
+│   │                   │   ├── list
+│   │                   │   │   ├── EmptyProductsView.kt
+│   │                   │   │   ├── ListProduct.kt
+│   │                   │   │   ├── ListProductScreen.kt
+│   │                   │   │   ├── ListProductViewModel.kt
+│   │                   │   │   └── ProductItem.kt
+│   │                   │   └── update
+│   │                   │       ├── UpdateProductScreen.kt
+│   │                   │       ├── UpdateProductUiEffect.kt
+│   │                   │       ├── UpdateProductUiEvent.kt
+│   │                   │       ├── UpdateProductUiState.kt
+│   │                   │       └── UpdateProductViewModel.kt
+│   │                   └── ui
+│   │                       └── theme
+│   │                           ├── Color.kt
+│   │                           ├── Theme.kt
+│   │                           └── Type.kt
+│   └── res
+│       ├── drawable
+│       │   └── ic_launcher_background.xml
+│       ├── drawable-v24
+│       │   └── ic_launcher_foreground.xml
+│       ├── mipmap-anydpi-v26
+│       │   ├── ic_launcher.xml
+│       │   └── ic_launcher_round.xml
+│       ├── mipmap-hdpi
+│       │   ├── ic_launcher.png
+│       │   └── ic_launcher_round.png
+│       ├── mipmap-mdpi
+│       │   ├── ic_launcher.png
+│       │   └── ic_launcher_round.png
+│       ├── mipmap-xhdpi
+│       │   ├── ic_launcher.png
+│       │   └── ic_launcher_round.png
+│       ├── mipmap-xxhdpi
+│       │   ├── ic_launcher.png
+│       │   └── ic_launcher_round.png
+│       ├── mipmap-xxxhdpi
+│       │   ├── ic_launcher.png
+│       │   └── ic_launcher_round.png
+│       └── values
+│           └── strings.xml
+├── commonMain
+│   ├── composeResources
+│   │   └── drawable
+│   │       └── compose-multiplatform.xml
+│   └── kotlin
+│       └── com
+│           └── example
+│               └── kotlinmultiplatform
+│                   ├── App.kt
+│                   ├── Greeting.kt
+│                   ├── Platform.kt
+│                   ├── core
+│                   │   ├── constants
+│                   │   │   └── Constants.kt
+│                   │   └── resource
+│                   │       └── Resource.kt
+│                   ├── data
+│                   │   ├── mapper
+│                   │   │   ├── CustomerMapper.kt
+│                   │   │   └── ProductMapper.kt
+│                   │   └── remote
+│                   │       ├── dto
+│                   │       │   ├── CustomerDTO.kt
+│                   │       │   └── ProductDTO.kt
+│                   │       └── mapper
+│                   │           ├── CustomerRemoteMapper.kt
+│                   │           └── ProductRemoteMapper.kt
+│                   └── domain
+│                       ├── model
+│                       │   ├── Customer.kt
+│                       │   └── Product.kt
+│                       ├── repository
+│                       │   ├── CustomerRepository.kt
+│                       │   └── ProductRepository.kt
+│                       ├── usecase
+│                       │   ├── customer
+│                       │   │   ├── CreateCustomerUseCase.kt
+│                       │   │   ├── DeleteCustomerUseCase.kt
+│                       │   │   ├── GetCustomerByIdUseCase.kt
+│                       │   │   ├── ListCustomerUseCase.kt
+│                       │   │   └── UpdateCustomerUseCase.kt
+│                       │   └── product
+│                       │       ├── CreateProductUseCase.kt
+│                       │       ├── DeleteProductUseCase.kt
+│                       │       ├── GetProductByCodeUseCase.kt
+│                       │       ├── ListProductUseCase.kt
+│                       │       └── UpdateProductUseCase.kt
+│                       └── validation
+│                           ├── CustomerValidator.kt
+│                           └── ProductValidator.kt
+├── commonTest
+│   └── kotlin
+│       └── com
+│           └── example
+│               └── kotlinmultiplatform
+│                   └── ComposeAppCommonTest.kt
+├── iosMain
+│   └── kotlin
+│       └── com
+│           └── example
+│               └── kotlinmultiplatform
+│                   ├── MainViewController.kt
+│                   └── Platform.ios.kt
+├── jsMain
+│   └── kotlin
+│       └── com
+│           └── example
+│               └── kotlinmultiplatform
+│                   └── Platform.js.kt
+├── jvmMain
+│   └── kotlin
+│       └── com
+│           └── example
+│               └── kotlinmultiplatform
+│                   ├── Platform.jvm.kt
+│                   └── main.kt
+├── wasmJsMain
+│   └── kotlin
+│       └── com
+│           └── example
+│               └── kotlinmultiplatform
+│                   └── Platform.wasmJs.kt
+└── webMain
+    ├── kotlin
+    │   └── com
+    │       └── example
+    │           └── kotlinmultiplatform
+    │               └── main.kt
+    └── resources
+        ├── index.html
+        └── styles.css
