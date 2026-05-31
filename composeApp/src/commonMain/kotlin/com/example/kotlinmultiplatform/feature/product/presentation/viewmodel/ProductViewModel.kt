@@ -33,6 +33,7 @@ class ProductViewModel(
 
     fun onEvent(event: ProductEvent) {
         when (event) {
+            is ProductEvent.LoadAll -> refresh()
             is ProductEvent.Save -> viewModelScope.launch {
                 try {
                     saveProduct(event.product)

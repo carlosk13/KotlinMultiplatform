@@ -18,17 +18,19 @@ class ProductApi(
     suspend fun getProducts(): List<ProductDTO> =
         client.get("$baseUrl/products").body()
 
-    suspend fun saveProduct(dto: ProductDTO): ProductDTO =
+    suspend fun saveProduct(dto: ProductDTO) {
         client.post("$baseUrl/products") {
             contentType(ContentType.Application.Json)
             setBody(dto)
-        }.body()
+        }
+    }
 
-    suspend fun updateProduct(code: String, dto: ProductDTO): ProductDTO =
+    suspend fun updateProduct(code: String, dto: ProductDTO) {
         client.put("$baseUrl/products/$code") {
             contentType(ContentType.Application.Json)
             setBody(dto)
-        }.body()
+        }
+    }
 
     suspend fun deleteProduct(code: String) {
         client.delete("$baseUrl/products/$code")

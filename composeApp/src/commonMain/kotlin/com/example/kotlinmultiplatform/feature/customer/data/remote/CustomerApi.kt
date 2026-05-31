@@ -17,16 +17,18 @@ class CustomerApi(
 ) {
     suspend fun getCustomers(): List<CustomerDTO> =
         client.get("$baseUrl/customers").body()
-    suspend fun saveCustomer(dto: CustomerDTO): CustomerDTO =
+    suspend fun saveCustomer(dto: CustomerDTO) {
         client.post("$baseUrl/customers") {
             contentType(ContentType.Application.Json)
             setBody(dto)
-        }.body()
-    suspend fun updateCustomer(id: String, dto: CustomerDTO): CustomerDTO =
+        }
+    }
+    suspend fun updateCustomer(id: String, dto: CustomerDTO) {
         client.put("$baseUrl/customers/$id") {
             contentType(ContentType.Application.Json)
             setBody(dto)
-        }.body()
+        }
+    }
 
     suspend fun deleteCustomer(id: String) {
         client.delete("$baseUrl/customers/$id")

@@ -33,6 +33,7 @@ class CustomerViewModel(
 
     fun onEvent(event: CustomerEvent) {
         when (event) {
+            is CustomerEvent.LoadAll -> refresh()
             is CustomerEvent.Save -> viewModelScope.launch {
                 try {
                     saveCustomer(event.customer)
